@@ -1,0 +1,40 @@
+{
+	"cli": true,
+	"adapterName": "xplora",
+	"title": "Xplora® people tracker",
+	"description": "Inofficial ioBroker adapter for Xplora® smartwatches.",
+	"keywords": [
+		"xplora",
+		"smartwatch",
+		"kid",
+		"gps"
+	],
+	"expert": "no",
+	"features": [
+		"adapter"
+	],
+	"adminFeatures": [],
+	"type": "geoposition",
+	"startMode": "daemon",
+	"connectionType": "cloud",
+	"dataSource": "poll",
+	"connectionIndicator": "no",
+	"language": "JavaScript",
+	"adminReact": "no",
+	"tools": [
+		"ESLint",
+		"type checking"
+	],
+	"indentation": "Tab",
+	"quotes": "double",
+	"es6class": "yes",
+	"authorName": "MiGoller",
+	"authorGithub": "MiGoller",
+	"authorEmail": "migoller@mail.de",
+	"gitRemoteProtocol": "HTTPS",
+	"gitCommit": "no",
+	"license": "MIT License",
+	"ci": "gh-actions",
+	"dependabot": "no",
+	"creatorVersion": "1.33.0"
+}

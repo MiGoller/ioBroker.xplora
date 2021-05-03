@@ -1,0 +1,144 @@
+{
+    "common": {
+        "name": "xplora",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "titleLang": {
+            "en": "Xplora® people tracker",
+            "de": "Xplora® People Tracker",
+            "ru": "Xplora® трекер людей",
+            "pt": "Rastreador de pessoas Xplora®",
+            "nl": "Xplora®-mensentracker",
+            "fr": "Traqueur de personnes Xplora®",
+            "it": "Tracciatore di persone Xplora®",
+            "es": "Rastreador de personas Xplora®",
+            "pl": "Śledzenie osób Xplora®",
+            "zh-cn": "Xplora® 人员追踪器"
+        },
+        "desc": {
+            "en": "Inofficial ioBroker adapter for Xplora® smartwatches.",
+            "de": "Inoffizieller ioBroker-Adapter für Xplora® -Smartwatches.",
+            "ru": "Неофициальный адаптер ioBroker для умных часов Xplora®.",
+            "pt": "Adaptador ioBroker não oficial para smartwatches Xplora®.",
+            "nl": "Onofficiële ioBroker-adapter voor Xplora® smartwatches.",
+            "fr": "Adaptateur ioBroker non officiel pour les montres intelligentes Xplora®.",
+            "it": "Adattatore ioBroker non ufficiale per smartwatch Xplora®.",
+            "es": "Adaptador ioBroker no oficial para relojes inteligentes Xplora®.",
+            "pl": "Nieoficjalny adapter ioBroker do smartwatchów Xplora®.",
+            "zh-cn": "用于Xplora® 智能手表的非正式ioBroker适配器。"
+        },
+        "authors": [
+            "MiGoller <migoller@mail.de>"
+        ],
+        "keywords": [
+            "xplora",
+            "smartwatch",
+            "kid",
+            "gps"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "icon": "xplora.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/MiGoller/ioBroker.xplora/master/admin/xplora.png",
+        "readme": "https://github.com/MiGoller/ioBroker.xplora/blob/master/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "geoposition",
+        "compact": true,
+        "connectionType": "cloud",
+        "dataSource": "poll",
+        "materialize": true,
+        "dependencies": [
+            {
+                "js-controller": ">=2.0.0"
+            }
+        ]
+    },
+    "native": {
+        "xplora_countrycode": "+49",
+        "xplora_phonenumber": "",
+        "xplora_password": "MySecretPassword",
+        "xplora_polling_interval": 60,
+        "sendto_places_adapter_instance": -1,
+        "sendto_places_adapter_regexp": ""
+    },
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "name": "connected",
+                "desc": "Connected to Xplora® cloud services?",
+                "type": "boolean",
+                "def": false,
+                "read": true,
+                "role": "value.info",
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "control",
+            "type": "channel",
+            "common": {
+                "name": "Control"
+            },
+            "native": {}
+        },
+        {
+            "_id": "control.pollinginterval",
+            "type": "state",
+            "common": {
+                "name": "Polling interval",
+                "desc": "Polling interval (seconds)",
+                "type": "number",
+                "def": 60,
+                "read": true,
+                "role": "value.number",
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "people",
+            "type": "device",
+            "common": {
+                "name": "People",
+                "desc": "People."
+            },
+            "native": {}
+        },
+        {
+            "_id": "watches",
+            "type": "device",
+            "common": {
+                "name": "Watches",
+                "desc": "Watches."
+            },
+            "native": {}
+        }
+    ]
+}
