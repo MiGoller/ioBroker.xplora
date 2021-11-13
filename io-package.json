@@ -101,6 +101,20 @@
             "native": {}
         },
         {
+            "_id": "info.lastUpdate",
+            "type": "state",
+            "common": {
+                "name": "lastUpdate",
+                "desc": "Timestamp of last data update.",
+                "type": "number",
+                "def": "",
+                "read": true,
+                "role": "value.time",
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "control",
             "type": "channel",
             "common": {
@@ -123,20 +137,20 @@
             "native": {}
         },
         {
-            "_id": "people",
+            "_id": "children",
             "type": "device",
             "common": {
-                "name": "People",
-                "desc": "People."
+                "name": "Children",
+                "desc": "Your children."
             },
             "native": {}
         },
         {
-            "_id": "watches",
+            "_id": "users",
             "type": "device",
             "common": {
-                "name": "Watches",
-                "desc": "Watches."
+                "name": "Users",
+                "desc": "Users (guardians)."
             },
             "native": {}
         }

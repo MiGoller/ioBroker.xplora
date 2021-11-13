@@ -1,5 +1,19 @@
 {
-    "option1": "option1",
-    "option2": "option2",
-    "xplora adapter settings": "Adapter settings for xplora"
+    "DEBUGGING_VERBOSE": "Enable verbose logging",
+    "LOCATION_OBJECT_TYPE": "Type of the geo-location-object.",
+    "LatCommaLng": "Latitude,Longitude (COMMA seperated string)",
+    "LatLng": "LatLng object",
+    "LatLon": "LatLon object",
+    "LatSemicolonLng": "Latitude;Longitude (SEMICOLON seperated string)",
+    "LatitudeLongitude": "LatitudeLongitude object",
+    "SENDTO_PLACES_ADAPTER": "Send location data to Places-adapter.",
+    "SENDTO_PLACES_ADAPTER_INSTANCE": "Places-adapter-instance to receive geo-positioning data:",
+    "SENDTO_PLACES_ADAPTER_INSTANCE_NONE": "None",
+    "SENDTO_PLACES_ADAPTER_REGEXP": "Regular expression pattern to filter data send to the Places-adapter.",
+    "TAB_GENERAL": "Xplora",
+    "TAB_INTEGRATION": "Integration",
+    "XPLORA_COUNTRYCODE": "Xplora country code for mobile phone:",
+    "XPLORA_PASSWORD": "Xplora password:",
+    "XPLORA_PHONENUMBER": "Xplora mobile phone number:",
+    "XPLORA_POLLING_INTERVAL": "Polling interval (seconds):"
 }
