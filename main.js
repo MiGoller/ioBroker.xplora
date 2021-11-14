@@ -53,6 +53,33 @@ class Xplora extends utils.Adapter {
 	 * Is called when databases are connected and adapter received configuration.
 	 */
 	async onReady() {
+
+		this.getForeignObject("system.config", (err, obj) => {
+			//	Support for encrypted credentials?
+			if (!this.supportsFeature || !this.supportsFeature("ADAPTER_AUTO_DECRYPT_NATIVE")) {
+
+				// eslint-disable-next-line no-inner-declarations
+				function decrypt(key, value) {
+					let result = "";
+					for (let i = 0; i < value.length; ++i) {
+						result += String.fromCharCode(key[i % key.length].charCodeAt(0) ^ value.charCodeAt(i));
+					}
+					return result;
+				}
+
+				if (obj && obj.native && obj.native.secret) {
+					//noinspection JSUnresolvedVariable
+					this.config.xplora_password = decrypt(obj.native.secret, this.config.xplora_password);
+				} else {
+					//noinspection JSUnresolvedVariable
+					this.config.xplora_password = decrypt("Zgfr56gFe87jJOM", this.config.xplora_password);
+				}
+			}
+
+			//	Start the main procedure.
+			this.main();
+		});
+
 		// Initialize your adapter here
 
 		// The adapters config (in the instance object everything under the attribute "native") is accessible via
@@ -60,7 +87,7 @@ class Xplora extends utils.Adapter {
 		// this.log.info("config option1: " + this.config.option1);
 		// this.log.info("config option2: " + this.config.option2);
 
-		this.main();
+		// this.main();
 
 		// /*
 		// For every state in the system there has to be also an object of type state
@@ -417,6 +444,19 @@ class Xplora extends utils.Adapter {
 		await this.setStateAsync("info.lastUpdate", { val: timestamp, ack: true })
 	}
 }
+
+process.on("SIGINT", function() {
+	// stopAll();
+	// setConnected(false);
+});
+
+process.on("uncaughtException", function(err) {
+	console.log("Exception: " + err + "/" + err.toString());
+	// adapter && adapter.log && adapter.log.warn('Exception: ' + err);
+
+	// stopAll();
+	// setConnected(false);
+});
 
 if (require.main !== module) {
 	// Export the constructor in compact mode

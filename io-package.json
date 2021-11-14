@@ -68,6 +68,12 @@
             }
         ]
     },
+    "encryptedNative": [
+        "xplora_password"
+    ],
+    "protectedNative": [
+        "xplora_password"
+    ],
     "native": {
         "xplora_countrycode": "+49",
         "xplora_phonenumber": "",
