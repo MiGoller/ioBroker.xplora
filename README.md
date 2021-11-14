@@ -13,13 +13,17 @@
 
 ## xplora adapter for ioBroker
 
-Unofficial ioBroker adapter for Xplora® smartwatches.
+Inofficial ioBroker adapter for Xplora® smartwatches.
 
 ## Documentation?
 
 The adapter is under construction and the documentation as well. Please be patient.
 
 ## Changelog
+
+### 0.1.0 (2021-11-14)
+
+* (MiGoller) MVP release
 
 ### 0.0.1
 

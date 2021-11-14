@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "xplora",
-        "version": "0.0.1",
+        "version": "0.1.0",
         "news": {
+            "0.1.0": {
+                "en": "MVP release.",
+                "de": "MVP-Version.",
+                "ru": "Релиз MVP.",
+                "pt": "Lançamento do MVP.",
+                "nl": "MVP-release.",
+                "fr": "Sortie MVP.",
+                "it": "Rilascio MVP.",
+                "es": "Lanzamiento de MVP.",
+                "pl": "Wydanie MVP.",
+                "zh-cn": "MVP 发布。"
+            },
             "0.0.1": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",
