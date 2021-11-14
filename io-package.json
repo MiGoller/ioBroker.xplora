@@ -80,7 +80,8 @@
         "xplora_password": "MySecretPassword",
         "xplora_polling_interval": 60,
         "sendto_places_adapter_instance": -1,
-        "sendto_places_adapter_regexp": ""
+        "sendto_places_adapter_regexp": "",
+        "location_object_type": "LatLng"
     },
     "objects": [],
     "instanceObjects": [

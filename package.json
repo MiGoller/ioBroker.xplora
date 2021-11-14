@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.4.0",
+    "geolocation-utils": "^1.2.5",
     "xplora-api.js": "^0.1.0"
   },
   "devDependencies": {
