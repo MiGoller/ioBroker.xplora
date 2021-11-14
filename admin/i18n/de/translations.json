@@ -1,6 +1,7 @@
 {
     "DEBUGGING_VERBOSE": "Ausführliche Protokollierung aktivieren",
     "LOCATION_OBJECT_TYPE": "Typ des Geo-Location-Objekts.",
+    "LOCATION_TRACKING": "Standortverfolgung",
     "LatCommaLng": "Breitengrad, Längengrad (durch COMMA getrennte Zeichenfolge)",
     "LatLng": "LatLng-Objekt",
     "LatLon": "LatLon-Objekt",

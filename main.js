@@ -441,7 +441,7 @@ class Xplora extends utils.Adapter {
 	}
 
 	async setLastUpdate(timestamp) {
-		await this.setStateAsync("info.lastUpdate", { val: timestamp, ack: true })
+		await this.setStateAsync("info.lastUpdate", { val: timestamp, ack: true });
 	}
 }
 

@@ -1,6 +1,7 @@
 {
     "DEBUGGING_VERBOSE": "Включить подробное ведение журнала",
     "LOCATION_OBJECT_TYPE": "Тип геолокации-объекта.",
+    "LOCATION_TRACKING": "Отслеживание местоположения",
     "LatCommaLng": "Широта, Долгота (строка, разделенная запятыми)",
     "LatLng": "Объект LatLng",
     "LatLon": "Объект LatLon",

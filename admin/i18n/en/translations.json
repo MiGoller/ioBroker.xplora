@@ -1,6 +1,7 @@
 {
     "DEBUGGING_VERBOSE": "Enable verbose logging",
     "LOCATION_OBJECT_TYPE": "Type of the geo-location-object.",
+    "LOCATION_TRACKING": "Location-tracking",
     "LatCommaLng": "Latitude,Longitude (COMMA seperated string)",
     "LatLng": "LatLng object",
     "LatLon": "LatLon object",
@@ -15,5 +16,8 @@
     "XPLORA_COUNTRYCODE": "Xplora country code for mobile phone:",
     "XPLORA_PASSWORD": "Xplora password:",
     "XPLORA_PHONENUMBER": "Xplora mobile phone number:",
-    "XPLORA_POLLING_INTERVAL": "Polling interval (seconds):"
+    "XPLORA_POLLING_INTERVAL": "Polling interval (seconds):",
+    "option1": "",
+    "option2": "",
+    "xplora adapter settings": ""
 }

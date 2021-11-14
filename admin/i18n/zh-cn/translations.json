@@ -1,6 +1,7 @@
 {
     "DEBUGGING_VERBOSE": "启用详细日志记录",
     "LOCATION_OBJECT_TYPE": "地理位置对象的类型。",
+    "LOCATION_TRACKING": "位置追踪",
     "LatCommaLng": "纬度、经度（逗号分隔的字符串）",
     "LatLng": "纬度对象",
     "LatLon": "经纬度对象",

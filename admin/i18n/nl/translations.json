@@ -1,6 +1,7 @@
 {
     "DEBUGGING_VERBOSE": "Uitgebreide logboekregistratie inschakelen",
     "LOCATION_OBJECT_TYPE": "Type van het geo-locatie-object.",
+    "LOCATION_TRACKING": "Locatie-tracking",
     "LatCommaLng": "Breedtegraad, Lengtegraad (door komma's gescheiden tekenreeks)",
     "LatLng": "LatLng-object",
     "LatLon": "LatLon-object",

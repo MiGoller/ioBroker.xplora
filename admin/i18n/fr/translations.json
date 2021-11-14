@@ -1,6 +1,7 @@
 {
     "DEBUGGING_VERBOSE": "Activer la journalisation détaillée",
     "LOCATION_OBJECT_TYPE": "Type de l'objet de géolocalisation.",
+    "LOCATION_TRACKING": "Suivi de localisation",
     "LatCommaLng": "Latitude,Longitude (chaîne séparée par une virgule)",
     "LatLng": "Objet LatLng",
     "LatLon": "Objet LatLon",

@@ -1,6 +1,7 @@
 {
     "DEBUGGING_VERBOSE": "Abilita la registrazione dettagliata",
     "LOCATION_OBJECT_TYPE": "Tipo di oggetto di geolocalizzazione.",
+    "LOCATION_TRACKING": "Localizzazione",
     "LatCommaLng": "Latitudine,Longitudine (stringa separata da COMMA)",
     "LatLng": "Oggetto LatLng",
     "LatLon": "Oggetto LatLon",
