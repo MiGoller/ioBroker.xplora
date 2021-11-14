@@ -18,10 +18,65 @@
 	<script type="text/javascript" src="words.js"></script>
 
 	<script type="text/javascript">
-		// This will be called by the admin adapter when the settings page loads
-		function load(settings, onChange) {
+		var secret;
+
+		/**
+		 * We will have to define 2 functions in the global scope to support encrypted credential storage.
+		 * Inspired by https://github.com/Apollon77/ioBroker.meross/blob/master/admin/index_m.html
+		*/
+		if (!encrypt || typeof encrypt !== 'function') {
+			function encrypt(key, value) {
+				if (value === undefined) {
+					value = key;
+					key = secret;
+				}
+				var result = '';
+				for (var i = 0; i < value.length; ++i) {
+					result += String.fromCharCode(key[i % key.length].charCodeAt(0) ^ value.charCodeAt(i));
+				}
+				return result;
+			}
+		}
+		if (!decrypt || typeof decrypt !== 'function') {
+			function decrypt(key, value) {
+				if (value === undefined) {
+					value = key;
+					key = secret;
+				}
+				var result = '';
+				for (var i = 0; i < value.length; ++i) {
+					result += String.fromCharCode(key[i % key.length].charCodeAt(0) ^ value.charCodeAt(i));
+				}
+				return result;
+			}
+		}
+
+		//	The orgininal load function. Slightly modified to support encrypted passwords.
+		function loadHelper(settings, onChange) {
 			// example: select elements with id=key and class=value and insert value
 			if (!settings) return;
+			$('.value').each(function () {
+				var $key = $(this);
+				var id = $key.attr('id');
+
+				if (id === 'xplora_password' && (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE'))) {
+					settings[id] = decrypt(secret, settings[id]);
+				}
+				
+				if ($key.attr('type') === 'checkbox') {
+					// do not call onChange direct, because onChange could expect some arguments
+					$key.prop('checked', settings[id])
+						.on('change', () => onChange())
+						;
+				} else {
+					// do not call onChange direct, because onChange could expect some arguments
+					$key.val(settings[id])
+						.on('change', () => onChange())
+						.on('keyup', () => onChange())
+						;
+				}
+			});
+
 			$('.value').each(function () {
 				var $key = $(this);
 				var id = $key.attr('id');
@@ -38,9 +93,32 @@
 						;
 				}
 			});
+
 			onChange(false);
 			// reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
 			if (M) M.updateTextFields();
+
+			//	Fill dropdown for Places-adapter instances
+			getAdapterInstances('places', function (list) {
+				for (var i = 0; i < list.length; i++) {
+					var _id = list[i]._id.replace('system.adapter.', '');
+                    $('#sendto_places_adapter_instance').append('<option value="' + _id.replace('places.', '') + '">' + _id + '</option>');
+                }
+                $('#sendto_places_adapter_instance.value').val(settings.sendto_places_adapter_instance).select();
+			});
+			
+			$('#location_object_type.value').val(settings.location_object_type).select();
+		}
+
+		// This will be called by the admin adapter when the settings page loads
+		//	Inspired by https://github.com/Apollon77/ioBroker.meross/blob/master/admin/index_m.html
+		function load(settings, onChange) {
+			socket.emit('getObject', 'system.config', function (err, obj) {
+				secret = (obj.native ? obj.native.secret : '') || 'Zgfr56gFe87jJOM';
+				loadHelper(settings, onChange);
+			});
+
+			onChange(false);
 		}
 
 		// This will be called by the admin adapter when the user presses the save button
@@ -49,14 +127,22 @@
 			var obj = {};
 			$('.value').each(function () {
 				var $this = $(this);
+				var id = $this.attr('id');
+
 				if ($this.attr('type') === 'checkbox') {
-					obj[$this.attr('id')] = $this.prop('checked');
+					obj[id] = $this.prop('checked');
 				} else if ($this.attr('type') === 'number') {
-					obj[$this.attr('id')] = parseFloat($this.val());
+					obj[id] = parseFloat($this.val());
 				} else {
-					obj[$this.attr('id')] = $this.val();
+					var value = $this.val();
+
+					if (id === 'xplora_password' && (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE'))) {
+						value = encrypt(secret, value);
+					}
+					obj[id] = value;
 				}
 			});
+
 			callback(obj);
 		}
 	</script>
@@ -67,27 +153,145 @@
 
 	<div class="m adapter-container">
 
-		<div class="row">
-			<div class="col s12 m4 l2">
-				<img src="xplora.png" class="logo">
-			</div>
-		</div>
-
 		<!-- Put your content here -->
-
-		<!-- For example columns with settings: -->
-		<div class="row">
-			<div class="col s6 input-field">
-				<input type="checkbox" class="value" id="option1" />
-				<label for="option1" class="translate">option1</label>
+		<div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3">
+                    <a href="#tab-main" class="translate active">TAB_GENERAL</a>
+                </li>
+                <!-- <li class="tab col s3">
+                    <a href="#tab-places" class="translate">TAB_MYPLACES</a>
+                </li> -->
+                <li class="tab col s3">
+                    <a href="#tab-integration" class="translate">TAB_INTEGRATION</a>
+				</li>
+				<!-- <li class="tab col s3">
+                    <a href="#tab-advanced" class="translate">TAB_ADVANCED</a>
+                </li> -->
+            </ul>
+		</div>
+		
+		<div id="tab-main" class="col s12 page">
+			<div class="row">
+				<div class="col s12 m4 l2">
+					<img src="xplora.png" class="logo">
+				</div>
 			</div>
 
-			<div class="col s6 input-field">
-				<input type="text" class="value" id="option2" />
-				<label for="option2" class="translate">option2</label>
+			<div class="row">
+				<div class="col s2 input-field">
+					<input type="text" class="value" id="xplora_countrycode" />
+					<label for="xplora_countrycode" class="translate">XPLORA_COUNTRYCODE</label>
+				</div>
+				<div class="col s4 input-field">
+					<input type="text" class="value" id="xplora_phonenumber" />
+					<label for="xplora_phonenumber" class="translate">XPLORA_PHONENUMBER</label>
+				</div>
+				<div class="col s6 input-field">
+					<input type="password" class="value" id="xplora_password" />
+					<label for="xplora_password" class="translate">XPLORA_PASSWORD</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s2 input-field">
+					<input type="number" class="value" id="xplora_polling_interval" min="15" max="1440"/>
+					<label for="xplora_polling_interval" class="translate">XPLORA_POLLING_INTERVAL</label>
+				</div>
 			</div>
 		</div>
 
+		<!-- <div id="tab-places" class="col s12 page">
+			<div class="row top-padding">
+				<div class="col s12 m8">
+					<div class="col s12" id="places">
+						<div class="table-values-div">
+							<table class="table-values">
+								<thead>
+									<tr>
+										<th data-name="name" class="translate">PLACE_NAME</th>
+										<th data-name="latitude" class="translate">PLACE_LATITUDE</th>
+										<th data-name="longitude" class="translate">PLACE_LONGITUDE</th>
+										<th data-name="radius" data-type="number" class="translate">PLACE_RADIUS</th>
+										<th data-name="circle" class="translate">PLACE_CIRCLE</th>
+										<th data-buttons="edit up down delete"></th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<a class="btn-floating waves-effect waves-light blue table-button-add">
+							<i class="material-icons">add</i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		
+		<div id="tab-integration" class="col s12 page">
+			<!-- <div class="section">
+				<h5 class="translate">Life360 data</h5>
+				<div class="row">
+					<div class="input-field col s4">
+						<input type="checkbox" class="value" id="process_life360_circles" />
+						<label for="process_life360_circles" class="translate">PROCESS_LIFE360_CIRCLES</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="checkbox" class="value" id="process_life360_places" />
+						<label for="process_life360_places" class="translate">PROCESS_LIFE360_PLACES</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="checkbox" class="value" id="process_life360_people" />
+						<label for="process_life360_people" class="translate">PROCESS_LIFE360_PEOPLE</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="divider"></div> -->
+			<div class="section">
+				<h5 class="translate">SENDTO_PLACES_ADAPTER</h5>
+				<div class="row">
+					<div class="input-field col s4">
+						<select class="value" id="sendto_places_adapter_instance">
+							<option value="-1" class="translate">SENDTO_PLACES_ADAPTER_INSTANCE_NONE</option>
+						</select>
+						<label class="translate" for="sendto_places_adapter_instance">SENDTO_PLACES_ADAPTER_INSTANCE</label>
+					</div>
+					<div class="input-field col s8">
+							<input type="text" class="value" id="sendto_places_adapter_regexp" />
+							<label for="sendto_places_adapter_regexp" class="translate">SENDTO_PLACES_ADAPTER_REGEXP</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="divider"></div>
+			<div class="section">
+				<h5 class="translate">LOCATION_TRACKING</h5>
+				<div class="row">
+					<div class="input-field col s4">
+						<select class="value" id="location_object_type">
+							<option value="LonLatTuple" class="translate">LonLatTuple</option>
+							<option value="LatLon" class="translate">LatLon</option>
+							<option value="LatLng" class="translate">LatLng</option>
+							<option value="LatitudeLongitude" class="translate">LatitudeLongitude</option>
+							<option value="CUSTOM_LatCommaLon" class="translate">LatCommaLng</option>
+							<option value="CUSTOM_LatSemicolonLon" class="translate">LatSemicolonLng</option>
+						</select>
+						<label class="translate" for="location_object_type">LOCATION_OBJECT_TYPE</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div id="tab-advanced" class="col s12 page">
+			<div class="section">
+				<h5 class="translate">Debugging</h5>
+				<div class="row">
+					<div class="input-field col s4">
+						<input type="checkbox" class="value" id="debugging_verbose" />
+						<label for="debugging_verbose" class="translate">DEBUGGING_VERBOSE</label>
+					</div>
+				</div>
+			</div>
+		</div> -->
 	</div>
 
 </body>

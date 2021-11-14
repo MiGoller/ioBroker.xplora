@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "xplora",
-        "version": "0.0.1",
+        "version": "0.1.0",
         "news": {
+            "0.1.0": {
+                "en": "MVP release.",
+                "de": "MVP-Version.",
+                "ru": "Релиз MVP.",
+                "pt": "Lançamento do MVP.",
+                "nl": "MVP-release.",
+                "fr": "Sortie MVP.",
+                "it": "Rilascio MVP.",
+                "es": "Lanzamiento de MVP.",
+                "pl": "Wydanie MVP.",
+                "zh-cn": "MVP 发布。"
+            },
             "0.0.1": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",
@@ -68,13 +80,20 @@
             }
         ]
     },
+    "encryptedNative": [
+        "xplora_password"
+    ],
+    "protectedNative": [
+        "xplora_password"
+    ],
     "native": {
         "xplora_countrycode": "+49",
         "xplora_phonenumber": "",
         "xplora_password": "MySecretPassword",
         "xplora_polling_interval": 60,
         "sendto_places_adapter_instance": -1,
-        "sendto_places_adapter_regexp": ""
+        "sendto_places_adapter_regexp": "",
+        "location_object_type": "LatLng"
     },
     "objects": [],
     "instanceObjects": [
@@ -96,6 +115,20 @@
                 "def": false,
                 "read": true,
                 "role": "value.info",
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.lastUpdate",
+            "type": "state",
+            "common": {
+                "name": "lastUpdate",
+                "desc": "Timestamp of last data update.",
+                "type": "number",
+                "def": "",
+                "read": true,
+                "role": "value.time",
                 "write": false
             },
             "native": {}
@@ -123,20 +156,20 @@
             "native": {}
         },
         {
-            "_id": "people",
+            "_id": "children",
             "type": "device",
             "common": {
-                "name": "People",
-                "desc": "People."
+                "name": "Children",
+                "desc": "Your children."
             },
             "native": {}
         },
         {
-            "_id": "watches",
+            "_id": "users",
             "type": "device",
             "common": {
-                "name": "Watches",
-                "desc": "Watches."
+                "name": "Users",
+                "desc": "Users (guardians)."
             },
             "native": {}
         }
