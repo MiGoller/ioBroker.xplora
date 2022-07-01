@@ -20,6 +20,8 @@ Inofficial ioBroker adapter for Xplora® smartwatches.
 The adapter is under construction and the documentation as well. Please be patient.
 
 ## Changelog
+### **WORK IN PROGRESS**
+
 ### 0.1.1-beta.1 (2022-07-01)
 
 - Update package version in `io-package.json`
