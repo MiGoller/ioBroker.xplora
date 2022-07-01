@@ -126,7 +126,7 @@
                 "name": "lastUpdate",
                 "desc": "Timestamp of last data update.",
                 "type": "number",
-                "def": "",
+                "def": 0,
                 "read": true,
                 "role": "value.time",
                 "write": false

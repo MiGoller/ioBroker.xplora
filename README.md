@@ -21,6 +21,12 @@ The adapter is under construction and the documentation as well. Please be patie
 
 ## Changelog
 
+### **WORK IN PROGRESS**
+
+- Updated default value for datapoint `info.lastUpdate` to fix issue [#9 Object xplora.0.info.lastUpdate is invalid](https://github.com/MiGoller/ioBroker.xplora/issues/9)
+
+- Catch uncaught exceptions for invalid or missing XPLORA data returned from API to fix issue [#7 Don't let adapter terminate itself for 50x API-errors](https://github.com/MiGoller/ioBroker.xplora/issues/7)
+
 ### 0.1.0 (2021-11-14)
 
 * (MiGoller) MVP release
