@@ -419,17 +419,21 @@ class Xplora extends utils.Adapter {
 
 			// // this.log.debug("Poll ...");
 
-			//	Poll data from Xplora Cloud service
-			xploraData = await xploraConnector.fullDataPoll();
+			try {
+				//	Poll data from Xplora Cloud service
+				xploraData = await xploraConnector.fullDataPoll();
 
-			//	Update the adapter connection flag.
-			this.setAdapterConnectionState(xploraData ? true : false);
+				//	Update the adapter connection flag.
+				this.setAdapterConnectionState(xploraData ? true : false);
 
-			//	Publish Xplora data to datapoints
-			xploraDp.publishXploraData(xploraData);
+				//	Publish Xplora data to datapoints
+				xploraDp.publishXploraData(xploraData);
 
-			//	Finally set timestamp for last update information
-			this.setLastUpdate(xploraData.timeStamp);
+				//	Finally set timestamp for last update information
+				this.setLastUpdate(xploraData.timeStamp);
+			} catch (error) {
+				this.log.error(`Failed to publish XPLORA data: ${error}`);
+			}
 
 			//	Setup Polling again ...
 			await this.SetupXploraPolling(XPLORA_POLLING_INTERVAL * 1000);
