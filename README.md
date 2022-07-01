@@ -20,7 +20,8 @@ Inofficial ioBroker adapter for Xplora® smartwatches.
 The adapter is under construction and the documentation as well. Please be patient.
 
 ## Changelog
-### 0.1.1-beta.0 (2022-07-01)
+
+### **WORK IN PROGRESS**
 
 - Updated default value for datapoint `info.lastUpdate` to fix issue [#9 Object xplora.0.info.lastUpdate is invalid](https://github.com/MiGoller/ioBroker.xplora/issues/9)
 
