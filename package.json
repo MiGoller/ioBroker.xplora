@@ -58,6 +58,7 @@
     "lint": "eslint",
     "translate": "translate-adapter",
     "release": "release-script",
+    "release:beta": "npm run release prerelease beta --addPlaceholder",
     "debug": "nodemon --inspect-brk ./main.js --debug 0"
   },
   "bugs": {
