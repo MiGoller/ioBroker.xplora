@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.4.0",
+    "@iobroker/dev-server": "^0.6.0",
     "geolocation-utils": "^1.2.5",
     "xplora-api.js": "^0.1.0"
   },
@@ -59,7 +60,8 @@
     "translate": "translate-adapter",
     "release": "release-script",
     "release:beta": "npm run release prerelease beta --addPlaceholder",
-    "debug": "nodemon --inspect-brk ./main.js --debug 0"
+    "debug": "nodemon --inspect-brk ./main.js --debug 0",
+    "dev-server": "dev-server"
   },
   "bugs": {
     "url": "https://github.com/MiGoller/ioBroker.xplora/issues"
