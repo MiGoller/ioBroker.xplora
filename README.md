@@ -1,5 +1,6 @@
-![Logo](admin/xplora.png)
 # ioBroker.xplora
+
+![Logo](admin/xplora.png)
 
 [![NPM version](https://img.shields.io/npm/v/iobroker.xplora.svg)](https://www.npmjs.com/package/iobroker.xplora)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.xplora.svg)](https://www.npmjs.com/package/iobroker.xplora)
@@ -20,7 +21,13 @@ Inofficial ioBroker adapter for Xplora® smartwatches.
 The adapter is under construction and the documentation as well. Please be patient.
 
 ## Changelog
-### **WORK IN PROGRESS**
+<!--
+  Placeholder for the next version (at the beginning of the line):
+  ### **WORK IN PROGRESS**
+-->
+### 0.1.2 (2023-05-01)
+
+- Fix for issue #13 [Kein Login möglich](https://github.com/MiGoller/ioBroker.xplora/issues/13)
 
 ### 0.1.1-beta.1 (2022-07-01)
 
@@ -34,17 +41,17 @@ The adapter is under construction and the documentation as well. Please be patie
 
 ### 0.1.0 (2021-11-14)
 
-* (MiGoller) MVP release
+- (MiGoller) MVP release
 
 ### 0.0.1
 
-* (MiGoller) initial release
+- (MiGoller) initial release
 
 ## License
 
 MIT License
 
-Copyright (c) 2021 MiGoller <migoller@mail.de>
+Copyright (c) 2021-2023 MiGoller <migoller@mail.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
