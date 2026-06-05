@@ -25,6 +25,10 @@ The adapter is under construction and the documentation as well. Please be patie
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+- (ioBroker-Bot) Adapter requires admin >= 7.8.23 now.
+
 ### 0.1.2 (2023-05-01)
 
 - Fix for issue #13 [Kein Login möglich](https://github.com/MiGoller/ioBroker.xplora/issues/13)
