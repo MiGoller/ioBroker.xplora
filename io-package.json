@@ -84,6 +84,7 @@
     "extIcon": "https://raw.githubusercontent.com/MiGoller/ioBroker.xplora/master/admin/xplora.png",
     "readme": "https://github.com/MiGoller/ioBroker.xplora/blob/master/README.md",
     "loglevel": "info",
+    "tier": 2,
     "mode": "daemon",
     "type": "geoposition",
     "compact": true,
