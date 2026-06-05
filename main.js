@@ -9,7 +9,7 @@
 const utils = require("@iobroker/adapter-core");
 
 // Load your modules here, e.g.:
-// const fs = require("fs");
+// const fs = require("node:fs");
 // const xpa = require("xplora-api.js");
 const xploraConnector = require("./lib/xploraConnector");
 const xploraDp = require("./lib/datapoints");
