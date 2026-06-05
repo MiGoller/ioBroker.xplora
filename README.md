@@ -47,6 +47,8 @@ The adapter is under construction and the documentation as well. Please be patie
 
 - (MiGoller) initial release
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 
 MIT License
